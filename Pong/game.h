@@ -10,6 +10,8 @@ class game{
     sf::RectangleShape bottom;
     sf::RectangleShape left;
     sf::RectangleShape right;
+    sf::RectangleShape ball; 
+
 
     public:
     game();

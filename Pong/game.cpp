@@ -5,13 +5,13 @@ const int height = 480;
 const int border_size = 30;
 game::game():m_window("Pong game",sf::Vector2u(width,height))
 { 
-top.setPosition(border_size,20);
+top.setPosition(border_size,0);
 top.setFillColor(sf::Color(100,100,100));
 top.setSize(sf::Vector2f(width-2*border_size,border_size));
 top.setOutlineThickness(3);
 top.setOutlineColor(sf::Color::Blue);
 
-bottom.setPosition(border_size,420);
+bottom.setPosition(border_size,height-border_size);
 bottom.setFillColor(sf::Color(100,100,100));
 bottom.setSize(sf::Vector2f(width-2*border_size,border_size));
 bottom.setOutlineThickness(3);
@@ -33,6 +33,12 @@ right.setOutlineThickness(3);
 right.setOutlineColor(sf::Color::Blue);
 
 
+ball.setPosition(height/2,width/2);
+ball.setFillColor(sf::Color(100,100,100));
+ball.setSize(sf::Vector2f(20,20));
+ball.setOutlineThickness(2);
+ball.setOutlineColor(sf::Color::Cyan);
+
 
 
 }
@@ -48,6 +54,7 @@ void game::render(){
     m_window.draw_func(bottom);
     m_window.draw_func(left);
     m_window.draw_func(right);
+    m_window.draw_func(ball);
     m_window.end_draw();
 }
 
