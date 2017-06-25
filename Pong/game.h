@@ -12,12 +12,12 @@ class game{
     sf::RectangleShape right;
     sf::RectangleShape ball; 
 
-
     public:
     game();
     void handle_input();
     void Update();
     void render();
     window* getwindow();
+    bool is_collision(sf::RectangleShape& r1 , sf::RectangleShape& r2);
 
 };

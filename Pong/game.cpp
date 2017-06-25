@@ -3,6 +3,7 @@
 const int width = 640;
 const int height = 480;
 const int border_size = 30;
+ sf::Vector2f ballspeed(1.0,1.0);
 game::game():m_window("Pong game",sf::Vector2u(width,height))
 { 
 top.setPosition(border_size,0);
@@ -35,7 +36,7 @@ right.setOutlineColor(sf::Color::Blue);
 
 ball.setPosition(height/2,width/2);
 ball.setFillColor(sf::Color(100,100,100));
-ball.setSize(sf::Vector2f(20,20));
+ball.setSize(sf::Vector2f(40,40));
 ball.setOutlineThickness(2);
 ball.setOutlineColor(sf::Color::Cyan);
 
@@ -47,6 +48,11 @@ void game::handle_input(){
 }
 window* game::getwindow(){ return &m_window ;}
 
+bool game:: is_collision(sf::RectangleShape& r1, sf::RectangleShape& r2){
+    sf::FloatRect f1 = r1.getGlobalBounds();
+    sf::FloatRect f2 = r2.getGlobalBounds();
+    return f1.intersects(f2);
+}
 
 void game::render(){
     m_window.begin_draw();
@@ -56,6 +62,18 @@ void game::render(){
     m_window.draw_func(right);
     m_window.draw_func(ball);
     m_window.end_draw();
+
+    if(is_collision(ball,top))
+    ballspeed.y =-ballspeed.y;
+    if(is_collision(ball,left))
+    ballspeed.x =-ballspeed.x;
+    if(is_collision(ball,right))
+    ballspeed.x =-ballspeed.x;
+    if(is_collision(ball,bottom))
+    {
+    ballspeed.y =-ballspeed.y;
+    }
+    ball.move(ballspeed);
 }
 
 void game::Update(){
