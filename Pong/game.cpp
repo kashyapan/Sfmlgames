@@ -16,6 +16,16 @@ bottom.setFillColor(sf::Color(100,100,100));
 bottom.setSize(sf::Vector2f(width-2*border_size,border_size));
 bottom.setOutlineThickness(3);
 bottom.setOutlineColor(sf::Color::Blue);
+
+
+
+left.setPosition(0,0);
+left.setFillColor(sf::Color(100,100,100));
+left.setSize(sf::Vector2f(border_size,height));
+left.setOutlineThickness(3);
+left.setOutlineColor(sf::Color::Blue);
+
+
 }
 void game::handle_input(){
 
@@ -27,6 +37,7 @@ void game::render(){
     m_window.begin_draw();
     m_window.draw_func(top);
     m_window.draw_func(bottom);
+    m_window.draw_func(left);
     m_window.end_draw();
 }
 
