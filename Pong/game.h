@@ -10,7 +10,8 @@ class game{
     sf::RectangleShape bottom;
     sf::RectangleShape left;
     sf::RectangleShape right;
-    sf::RectangleShape ball; 
+    sf::CircleShape ball;
+    sf::RectangleShape line;
 
     public:
     game();
@@ -18,6 +19,6 @@ class game{
     void Update();
     void render();
     window* getwindow();
-    bool is_collision(sf::RectangleShape& r1 , sf::RectangleShape& r2);
+    bool is_collision(sf::CircleShape& r1 , sf::RectangleShape& r2);
 
 };

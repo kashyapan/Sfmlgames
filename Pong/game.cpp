@@ -10,13 +10,13 @@ top.setPosition(border_size,0);
 top.setFillColor(sf::Color(100,100,100));
 top.setSize(sf::Vector2f(width-2*border_size,border_size));
 top.setOutlineThickness(3);
-top.setOutlineColor(sf::Color::Blue);
+top.setOutlineColor(sf::Color::Red);
 
 bottom.setPosition(border_size,height-border_size);
 bottom.setFillColor(sf::Color(100,100,100));
 bottom.setSize(sf::Vector2f(width-2*border_size,border_size));
 bottom.setOutlineThickness(3);
-bottom.setOutlineColor(sf::Color::Blue);
+bottom.setOutlineColor(sf::Color::Red);
 
 
 
@@ -24,21 +24,30 @@ left.setPosition(0,0);
 left.setFillColor(sf::Color(100,100,100));
 left.setSize(sf::Vector2f(border_size,height));
 left.setOutlineThickness(3);
-left.setOutlineColor(sf::Color::Blue);
-
+left.setOutlineColor(sf::Color::Red);
 
 right.setPosition(600,0);
 right.setFillColor(sf::Color(100,100,100));
 right.setSize(sf::Vector2f(border_size,height));
 right.setOutlineThickness(3);
-right.setOutlineColor(sf::Color::Blue);
+right.setOutlineColor(sf::Color::Red);
 
 
+ball.setRadius(12);
 ball.setPosition(height/2,width/2);
 ball.setFillColor(sf::Color(100,100,100));
-ball.setSize(sf::Vector2f(40,40));
 ball.setOutlineThickness(2);
 ball.setOutlineColor(sf::Color::Cyan);
+
+
+line.setPosition(300,0);
+
+
+
+line.setFillColor(sf::Color::Yellow);
+line.setSize(sf::Vector2f(5,height));
+line.setOutlineThickness(1);
+line.setOutlineColor(sf::Color::Red);
 
 
 
@@ -48,7 +57,7 @@ void game::handle_input(){
 }
 window* game::getwindow(){ return &m_window ;}
 
-bool game:: is_collision(sf::RectangleShape& r1, sf::RectangleShape& r2){
+bool game:: is_collision(sf::CircleShape & r1, sf::RectangleShape& r2){
     sf::FloatRect f1 = r1.getGlobalBounds();
     sf::FloatRect f2 = r2.getGlobalBounds();
     return f1.intersects(f2);
@@ -61,6 +70,7 @@ void game::render(){
     m_window.draw_func(left);
     m_window.draw_func(right);
     m_window.draw_func(ball);
+    m_window.draw_func(line);
     m_window.end_draw();
 
     if(is_collision(ball,top))
