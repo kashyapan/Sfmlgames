@@ -50,6 +50,12 @@ line.setOutlineThickness(1);
 line.setOutlineColor(sf::Color::Red);
 
 
+player1.setFillColor(sf::Color::Blue);
+player1.setSize(sf::Vector2f(10,height/7));
+player1.setOutlineThickness(1);
+player1.setOutlineColor(sf::Color::Blue);
+player1.setPosition(border_size+20,height/3);
+
 
 }
 void game::handle_input(){
@@ -71,6 +77,7 @@ void game::render(){
     m_window.draw_func(right);
     m_window.draw_func(ball);
     m_window.draw_func(line);
+    m_window.draw_func(player1);
     m_window.end_draw();
 
     if(is_collision(ball,top))

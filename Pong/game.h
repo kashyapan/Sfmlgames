@@ -12,7 +12,9 @@ class game{
     sf::RectangleShape right;
     sf::CircleShape ball;
     sf::RectangleShape line;
-
+    sf::RectangleShape player1;
+    sf::RectangleShape player2;
+    
     public:
     game();
     void handle_input();
