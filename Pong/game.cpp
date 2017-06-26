@@ -122,13 +122,15 @@ void game::render(){
     if(is_moving_up && !is_collision(player1,top))
   {
     player1.move(0,-10.0);
-    player2.move(0,-10.0);
    } 
    if(is_moving_down && !is_collision(player1,bottom))
-   
-   { player1.move(0,10.0);
-   player2.move(0,10.0);
+   { 
+       player1.move(0,10.0);
    }
+  if (ball.getPosition().y  + ball.getRadius()< player2.getPosition().y  )
+            player2.move(0, -10.0);
+        else if(ball.getPosition().y+ball.getRadius() > player2.getPosition().y+player2.getSize().y)
+            player2.move(0, 10.0);
     ball.move(ballspeed);
 }
 
