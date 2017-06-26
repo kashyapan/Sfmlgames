@@ -3,6 +3,8 @@
 const int width = 640;
 const int height = 480;
 const int border_size = 30;
+bool game::is_moving_up = false;
+bool game::is_moving_down = false;
  sf::Vector2f ballspeed(1.0,1.0);
 game::game():m_window("Pong game",sf::Vector2u(width,height))
 { 
@@ -67,7 +69,7 @@ player2.setPosition(580,height/3);
 }
  void game::handle_input(sf::Keyboard::Key key,bool ispressed){
     if(key == sf::Keyboard::W)
-    is_moving_up = ispressed;
+     is_moving_up = ispressed;
      if(key == sf::Keyboard::S)
     is_moving_down = ispressed;
     

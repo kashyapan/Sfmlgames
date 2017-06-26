@@ -14,8 +14,8 @@ class game{
     sf::RectangleShape line;
     sf::RectangleShape player1;
     sf::RectangleShape player2;
-    static bool is_moving_up;
-    static bool is_moving_down;
+   static  bool is_moving_up;
+     static bool is_moving_down;
 
     public:
     game();
