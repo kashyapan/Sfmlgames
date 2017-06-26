@@ -1,5 +1,5 @@
 #include "window.h"
-
+#include "game.h"
 
 window::window(const std::string& title , const sf::Vector2u& size){
     setup(title,size);
@@ -60,6 +60,13 @@ void window::update_func(){
     while(m_window.pollEvent(event)){
         if(event.type ==sf::Event::Closed)
         destroy();
+        switch(event.type ){
+            case sf::Event::KeyPressed:
+            game::handle_input(event.key.code,true);
+            break;
+            case sf::Event::KeyReleased:
+            game::handle_input(event.key.code,false);
+        }
     }
 }
 
