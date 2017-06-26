@@ -14,7 +14,7 @@ public:
 	void draw_func(sf::Drawable& d_element);
 	bool is_done();
 	private:
-	// functions 
+	// functions
 	void setup(const std::string& title, const sf::Vector2u& size);
 	void create_func();
 	void destroy();
