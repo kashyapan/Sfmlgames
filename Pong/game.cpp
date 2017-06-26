@@ -5,7 +5,7 @@ const int height = 480;
 const int border_size = 30;
 bool game::is_moving_up = false;
 bool game::is_moving_down = false;
- sf::Vector2f ballspeed(4.0,.40);
+ sf::Vector2f ballspeed(6.0,5.0);
 game::game():m_window("Pong game",sf::Vector2u(width,height))
 { 
 top.setPosition(border_size,0);
@@ -123,7 +123,7 @@ void game::render(){
     
     if(is_moving_up && !is_collision(player1,top))
   {
-    player1.move(0,-20.0);
+    player1.move(0,-10.0);
    } 
    if(is_moving_down && !is_collision(player1,bottom))
    { 
