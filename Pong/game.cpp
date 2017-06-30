@@ -3,7 +3,9 @@
 const int width = 640;
 const int height = 480;
 const int border_size = 30;
- sf::Vector2f ballspeed(1.0,1.0);
+bool game::is_moving_up = false;
+bool game::is_moving_down = false;
+ sf::Vector2f ballspeed(6.0,5.0);
 game::game():m_window("Pong game",sf::Vector2u(width,height))
 { 
 top.setPosition(border_size,0);
@@ -65,12 +67,22 @@ player2.setPosition(580,height/3);
 
 
 }
-void game::handle_input(){
-
+ void game::handle_input(sf::Keyboard::Key key,bool ispressed){
+    if(key == sf::Keyboard::W)
+     is_moving_up = ispressed;
+     if(key == sf::Keyboard::S)
+    is_moving_down = ispressed;
+    
 }
 window* game::getwindow(){ return &m_window ;}
 
 bool game:: is_collision(sf::CircleShape & r1, sf::RectangleShape& r2){
+    sf::FloatRect f1 = r1.getGlobalBounds();
+    sf::FloatRect f2 = r2.getGlobalBounds();
+    return f1.intersects(f2);
+}
+
+bool game:: is_collision(sf::RectangleShape & r1, sf::RectangleShape& r2){
     sf::FloatRect f1 = r1.getGlobalBounds();
     sf::FloatRect f2 = r2.getGlobalBounds();
     return f1.intersects(f2);
@@ -98,6 +110,29 @@ void game::render(){
     {
     ballspeed.y =-ballspeed.y;
     }
+
+ 
+    if(is_collision(ball,player1) || (is_collision(ball,player2)))
+    {
+        ballspeed.x=-ballspeed.x;
+    
+       
+    }
+
+    
+    
+    if(is_moving_up && !is_collision(player1,top))
+  {
+    player1.move(0,-10.0);
+   } 
+   if(is_moving_down && !is_collision(player1,bottom))
+   { 
+       player1.move(0,10.0);
+   }
+  if (ball.getPosition().y  + ball.getRadius()< player2.getPosition().y  )
+            player2.move(0, -10.0);
+        else if(ball.getPosition().y+ball.getRadius() > player2.getPosition().y+player2.getSize().y)
+            player2.move(0, 10.0);
     ball.move(ballspeed);
 }
 

@@ -14,13 +14,16 @@ class game{
     sf::RectangleShape line;
     sf::RectangleShape player1;
     sf::RectangleShape player2;
-    
+   static  bool is_moving_up;
+     static bool is_moving_down;
+
     public:
     game();
-    void handle_input();
+   static void handle_input(sf::Keyboard::Key Key,bool ispressed);
     void Update();
     void render();
     window* getwindow();
     bool is_collision(sf::CircleShape& r1 , sf::RectangleShape& r2);
+    bool is_collision(sf::RectangleShape& r1, sf::RectangleShape& r2);
 
 };
